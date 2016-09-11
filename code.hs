@@ -38,3 +38,10 @@ myFlat :: NestedList a -> [a]
 myFlat (List []) = []
 myFlat (Elem a) = [a]
 myFlat (List (x:xs)) = myFlat x ++ myFlat (List xs)
+--8 Remove Consecutive Duplicates from the List
+myDuplicatesRemove :: (Eq a) => [a] -> [a]
+myDuplicatesRemove [] = []
+myDuplicatesRemove [a] = [a]
+myDuplicatesRemove (x:xs) = if x == head xs
+                                then myDuplicatesRemove xs
+								else [x] ++ myDuplicatesRemove xs
