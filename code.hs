@@ -21,3 +21,7 @@ myKthElement list k = if k >= 1 && (k - 1) < (myLength list)
 myLength :: [a] -> Int
 myLength [] = 0
 myLength list = (myLength (tail list)) + 1
+--5 Reverse List
+myReverse :: [a] -> [a]
+myReverse [] = []
+myReverse (x:xs) = myReverse xs ++ [x]
