@@ -25,3 +25,10 @@ myLength list = (myLength (tail list)) + 1
 myReverse :: [a] -> [a]
 myReverse [] = []
 myReverse (x:xs) = myReverse xs ++ [x]
+--6 Is List a Palindrome
+myPalindromeCheck :: (Eq a) => [a] -> Bool
+myPalindromeCheck [] = True
+myPalindromeCheck [a] = True
+myPalindromeCheck (x:xs) = if x == myLast xs
+                            then myPalindromeCheck (init xs)
+                            else False
