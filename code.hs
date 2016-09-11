@@ -12,8 +12,10 @@ myButLast list = myButLast (tail list)
 --3 K-th Element
 myKthElement :: [a] -> Int -> a
 myKthElement [] k = error "List is empty, it has no k-th element."
-myKthElement list k = if k >= 1 && (k - 1) < (length list)
-                        then list !! (k - 1)
+myKthElement list k = if k >= 1 && (k - 1) < (myLength list)
+                        then if k == 1 
+                            then head list
+                            else myKthElement (tail list) (k - 1)
                         else error "Value of k is out of scope of the given list."
 --4 Length of List
 myLength :: [a] -> Int
