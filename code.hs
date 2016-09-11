@@ -32,3 +32,9 @@ myPalindromeCheck [a] = True
 myPalindromeCheck (x:xs) = if x == myLast xs
                             then myPalindromeCheck (init xs)
                             else False
+--7 List to Flat List (List of Elem Type)
+data NestedList a = Elem a | List [NestedList a]
+myFlat :: NestedList a -> [a]
+myFlat (List []) = []
+myFlat (Elem a) = [a]
+myFlat (List (x:xs)) = myFlat x ++ myFlat (List xs)
