@@ -44,4 +44,22 @@ myDuplicatesRemove [] = []
 myDuplicatesRemove [a] = [a]
 myDuplicatesRemove (x:xs) = if x == head xs
                                 then myDuplicatesRemove xs
-								else [x] ++ myDuplicatesRemove xs
+                                else [x] ++ myDuplicatesRemove xs
+--Tools for problem 9 (Remove first duplicates)
+myFirstDuplicatesRemove :: (Eq a) => [a] -> [a]
+myFirstDuplicatesRemove [] = []
+myFirstDuplicatesRemove [a] = []
+myFirstDuplicatesRemove (x:xs) = if x == head xs
+                                    then myFirstDuplicatesRemove xs
+                                    else xs
+myDuplicatesExtract :: (Eq a) => [a] -> [a]
+myDuplicatesExtract [] = []
+myDuplicatesExtract [a] = [a]
+myDuplicatesExtract (x:xs) = if x == head xs
+                                then [x] ++ myDuplicatesExtract xs
+                                else [x]
+--9 Pack consecutive duplicates of list elements into sublists
+myPack :: (Eq a) => [a] -> [[a]]
+myPack [] = []
+myPack [a] = [[a]]
+myPack list = [myDuplicatesExtract list] ++ myPack (myFirstDuplicatesRemove list)
