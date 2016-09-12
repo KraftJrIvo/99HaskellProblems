@@ -45,7 +45,7 @@ myDuplicatesRemove [a] = [a]
 myDuplicatesRemove (x:xs) = if x == head xs
                                 then myDuplicatesRemove xs
                                 else [x] ++ myDuplicatesRemove xs
---Tools for problem 9 (Remove first duplicates)
+--Tools for problem 9
 myFirstDuplicatesRemove :: (Eq a) => [a] -> [a]
 myFirstDuplicatesRemove [] = []
 myFirstDuplicatesRemove [a] = []
@@ -63,3 +63,12 @@ myPack :: (Eq a) => [a] -> [[a]]
 myPack [] = []
 myPack [a] = [[a]]
 myPack list = [myDuplicatesExtract list] ++ myPack (myFirstDuplicatesRemove list)
+--Tools for problem 10 
+myEncode :: (Eq a) => [a] -> [(Int, a)]
+myEncode [] = []
+myEncode list = [(myLength list, head list)]
+--10 Run-length encoding of a list.
+myListEncode :: (Eq a) => [a] -> [(Int, a)]
+myListEncode [] = []
+myListEncode [a] = myEncode [a]
+myListEncode list = myEncode (myDuplicatesExtract list) ++ myListEncode (myFirstDuplicatesRemove list)
